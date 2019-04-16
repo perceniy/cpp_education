@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/uchi/Documents/Repos/cpp_education/oop_course/oop-lesson-01/main.cpp
+iostream
+-
+cmath
+-
+cstdint
+-
+
