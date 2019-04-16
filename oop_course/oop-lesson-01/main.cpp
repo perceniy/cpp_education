@@ -42,6 +42,8 @@ public:
     }
 };
 
+//Task 2. Create class RGBA
+
 class RGBA {
 private:
     uint8_t m_red = 0;
@@ -60,6 +62,54 @@ public:
     }
 };
 
+//Task 3. Create class stack
+
+class Stack {
+private:
+    int a[10];
+    int length = 0;
+public:
+    Stack() {};
+    void reset() {
+        length = 0;
+        for (int i = 0; i < 10; i++) a[i] = 0;
+    }
+    bool push(int val) {
+        if (length == 10) {
+            cout<< "Error: stack overflow" << endl;
+            return false;
+        } else {
+            length++;
+            for(int i = length - 1; i >= 1; i--) {
+                a[i] = a[i-1];
+            }
+            a[0] = val;
+            return true;
+        }
+    }
+    int pop() {
+        if (length>0) {
+            int result = a[0];
+            for(int i = 0; i < length - 1; i++) {
+                a[i] = a[i+1];
+            }
+            length--;
+            return result;
+        } else {
+            cout << "Error: Stack is empty" << endl;
+            return 0;
+        }
+    }
+    void print() {
+        for (int i = length - 1; i >= 0; i-- ) {
+            cout << a[i] << " ";
+        }
+        cout << endl;
+    }
+
+
+};
+
 
 int main() {
 
@@ -76,8 +126,25 @@ int main() {
     p.printRGBA();
 
     //Task 3
-    
 
+    cout << endl << "Task 3 " << endl << endl;
+
+    Stack s;
+    int test;
+    s.reset();
+    test = s.pop();
+    cout <<"Test variable: "<< test << endl;
+
+    for (int j = 0, v = 10; j <= 11; j++, v+=10 ) {
+        s.push(v);
+    }
+
+    s.print();
+
+    test = s.pop();
+    cout <<"Test variable: "<< test << endl;
+
+    s.print();
 
     return EXIT_SUCCESS;
 }
