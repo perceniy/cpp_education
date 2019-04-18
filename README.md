@@ -1,2 +1,2 @@
 # cpp_education
-Learning cpp projects
+C++ learning projects
