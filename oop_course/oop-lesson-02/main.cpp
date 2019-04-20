@@ -59,6 +59,7 @@ public:
         cout <<"Name: " << name <<"; Age: " << age <<"; Gender: " << gender << "; Weight: " << weight << endl;
     }
 
+    friend class Student;
 
 };
 
@@ -76,6 +77,18 @@ private:
 public:
     Student () {
         graduationYear = 2000;
+    }
+    Student(string namei, int agei, string genderi, float weight, int graduationYeari):
+        Person(namei, agei, genderi, weight), graduationYear(graduationYeari) {}
+
+    void set_gyear(int graduationYear) {
+        this->graduationYear = graduationYear;
+    }
+    void inc_gyear(int gap) {
+        this->graduationYear += gap;
+    };
+    void printStudent() const {
+        cout <<"Name: " << name <<"; Age: " << age <<"; Gender: " << gender << "; Weight: " << weight << "; Year: "<< graduationYear<<endl;
     }
 };
 
@@ -98,7 +111,16 @@ int main() {
     cout << endl;
 
     cout << "Create a new default student" << endl;
-    Student newStudent;
-    newStudent.printPerson();
+    Student defaultStudent;
+    defaultStudent.set_weight(25.0f);
+    defaultStudent.printPerson();
+
+    Student newStudent("Ivan", 27, "Male", 65.5f , 2019);
+    newStudent.printStudent();
+
+    newStudent.set_gyear(2010);
+    newStudent.inc_gyear(2);
+    newStudent.printStudent();
+
     return EXIT_SUCCESS;
 }
