@@ -4,6 +4,7 @@
 
 using namespace std;
 
+//Task 1
 class MyRandom {
 private:
     mutable int number;
@@ -34,6 +35,8 @@ public:
 
 };
 
+//Task 3
+
 class Person {
 private:
     string name;
@@ -58,7 +61,7 @@ public:
     void printPerson() const {
         cout <<"Name: " << name <<"; Age: " << age <<"; Gender: " << gender << "; Weight: " << weight << endl;
     }
-
+    // Определим дочерний класс как дружественный, чтобы иметь доступ к private переменным
     friend class Student;
 
 };
@@ -92,8 +95,47 @@ public:
     }
 };
 
+//Task 3
+
+class Fruit {
+private:
+    string name;
+    string colour;
+public:
+    Fruit () {
+        name = "Undefined";
+        colour = "Undefined";
+    }
+    Fruit (string name, string colour): name(name), colour(colour) {};
+    string getName() const {
+        return name;
+    };
+    string getColor() const {
+        return colour;
+    };
+};
+
+class Banana: public Fruit {
+public:
+    Banana(): Fruit("banana","yellow") {
+    };
+};
+
+class Apple: public Fruit {
+public:
+    Apple():Fruit("apple","green") {};
+    Apple(string colour):Fruit("apple", colour) {};
+    Apple(string name, string colour):Fruit(name,colour) {};
+};
+
+class GrannySmith: public Apple {
+public:
+    GrannySmith():Apple("Granny Smith apple","green") {}
+};
 
 int main() {
+
+    //Task 1
 
     MyRandom generator;
     cout << "Current: "<< generator.current() << "; Next: " << generator.next() << endl;
@@ -101,6 +143,8 @@ int main() {
     MyRandom copyGen(generator);
     cout << "Current: "<< copyGen.current() << "; Next: " << copyGen.next() << endl;
     cout << endl;
+
+    //Task 2
 
     Person defaultPerson;
     defaultPerson.printPerson();
@@ -121,6 +165,17 @@ int main() {
     newStudent.set_gyear(2010);
     newStudent.inc_gyear(2);
     newStudent.printStudent();
+    cout << endl;
+
+    //Task 3
+
+    Apple a("red");
+    Banana b;
+    GrannySmith c;
+
+    std::cout << "My " << a.getName() << " is " << a.getColor() << endl;
+    std::cout << "My " << b.getName() << " is " << b.getColor() << endl;
+    std::cout << "My " << c.getName() << " is " << c.getColor() << endl;
 
     return EXIT_SUCCESS;
 }
