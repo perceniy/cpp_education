@@ -1,6 +1,6 @@
-/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/uchi/Documents/Repos/cpp_education/oop_course/oop-lesson-01
--- The C compiler identification is AppleClang 10.0.0.10001044
--- The CXX compiler identification is AppleClang 10.0.0.10001044
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop-lesson-01
+-- The C compiler identification is AppleClang 10.0.1.10010046
+-- The CXX compiler identification is AppleClang 10.0.1.10010046
 -- Check for working C compiler: /Library/Developer/CommandLineTools/usr/bin/cc
 -- Check for working C compiler: /Library/Developer/CommandLineTools/usr/bin/cc -- works
 -- Detecting C compiler ABI info
@@ -15,4 +15,4 @@
 -- Detecting CXX compile features - done
 -- Configuring done
 -- Generating done
--- Build files have been written to: /Users/uchi/Documents/Repos/cpp_education/oop_course/oop-lesson-01/cmake-build-debug
+-- Build files have been written to: /Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop-lesson-01/cmake-build-debug
