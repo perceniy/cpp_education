@@ -1,13 +1,16 @@
 #include <iostream>
 #include <cmath>
+#include <string>
 
 using namespace std;
+
+// Task 1
 
 class Figure {
 public:
     Figure(){
-        cout<<"Derault Figure constructor"<< endl;
-    };
+        cout << endl <<"Derault Figure constructor"<< endl;
+    }
     virtual double getArea() = 0;
 };
 
@@ -26,7 +29,7 @@ public:
         this->height = height;
         this->side = side;
         cout<<"Normal Parallelogram constructor"<< endl;
-    };
+    }
     double getArea() {
         cout <<"Parallelogram square" << endl;
         return base * height;
@@ -37,7 +40,7 @@ class Rectangle : public Parallelogram {
 public:
     Rectangle(double base, double height): Parallelogram(base, height, height) {
         cout<<"Normal Rectangle constructor"<< endl;
-    };
+    }
     double getArea() {
         cout <<"Rectangle square" << endl;
         return base * height;
@@ -48,7 +51,7 @@ class Square : public Parallelogram {
 public:
     Square(double base): Parallelogram(base, base, base) {
         cout<<"Normal Square constructor"<< endl;
-    };
+    }
     double getArea() {
         cout <<"Square square" << endl;
         return base * base;
@@ -68,11 +71,174 @@ public:
         cout <<"Circle square" << endl;
         return M_PI*radius*radius;
     }
-
 };
 
 
+// Task 2
+
+class Car {
+protected:
+    string Model;
+    string Company;
+public:
+    Car(): Model("Undefined"), Company ("Undefined") {
+        cout << endl << "Derault Car constructor: " << Company << " " <<  Model <<endl;
+    }
+    Car(string model, string company): Model(model), Company (company) {
+        cout << endl << "Normal Car constructor: " << this->Company << " " <<  this->Model << endl;
+    }
+};
+
+class PassengerCar: public Car{
+public:
+    PassengerCar(): Car("PassengerCar","Car") {
+        cout << "Derault PassengerCar constructor" << endl;
+    }
+    PassengerCar(string model, string company): Car(model, company) {
+        cout << "Normal PassengerCar constructor" << endl;
+    }
+};
+
+class Bus: public Car {
+public:
+    Bus(): Car("Bus","Car") {
+        cout << "Derault Bus constructor" << endl;
+    }
+    Bus(string model, string company): Car(model, company) {
+        cout << "Normal Bus constructor" << endl;
+    }
+};
+
+class Minivan: public PassengerCar, Bus {
+public:
+    Minivan(){
+        cout << "Derault Minivan constructor" << endl;
+    }
+    Minivan(string model, string company){
+
+        cout << "Normal Minivan constructor" << endl;
+    }
+};
+
+//Task 3
+
+int getNOD (int a, int b) {
+    if ( a<= 0 || b <= 0 ) return 0;
+    int tmp = 0;
+    while (b) {
+        tmp = a % b;
+        a = b;
+        b = tmp;
+    }
+    return a;
+}
+
+class Fraction {
+protected:
+    // Знак будем хранить в специальной переменной
+    int Sign = 1;
+    int Numerator = 0;
+    int Denominator = 1;
+public:
+    Fraction(){}
+    Fraction(int numerator, int denominator){
+        assert(denominator > 0);
+        Numerator = numerator;
+        Denominator = denominator;
+        //cout << "Normal Fraction constructor" << endl;
+    }
+    void reverseSign() {
+        Sign = -Sign;
+    }
+};
+
+class SimpleFraction: public Fraction {
+public:
+    SimpleFraction(): Fraction() {}
+    SimpleFraction(int numerator, int denominator): Fraction(abs(numerator), denominator) {
+        if (numerator < 0) Sign = -1;
+    }
+
+    void printValues() const {
+        cout << ((Sign < 0) ? "-": "") << Numerator << "/" << Denominator << endl;
+    }
+
+    int getNumerator() const { return Numerator; };
+    int getDenominator() const { return Denominator; };
+    friend SimpleFraction operator+ (const SimpleFraction &sf1, const SimpleFraction &sf2);
+
+    friend SimpleFraction operator- (const SimpleFraction &sf1);
+
+};
+
+class MixedFraction: public Fraction {
+protected:
+    /* Знак дроби нужно передавать через целую часть, или через числитель, если целая часть - О */
+    int Whole = 0;
+public:
+    MixedFraction(){}
+    MixedFraction(int whole, int numerator, int denominator): Fraction(abs(numerator), denominator), Whole(abs(whole)) {
+        assert(( numerator >= 0 ) || ( whole == 0 && numerator <0 ));
+        if (whole < 0 || numerator < 0) Sign = -1;
+        if (Numerator > Denominator) {
+            Whole+= Numerator/Denominator;
+            Numerator = Numerator % Denominator;
+        }
+    }
+    void printValues() {
+        cout << ((Sign < 0) ? "-": "") << Whole << "(" << Numerator << "/" << Denominator << ")" << endl;
+    }
+
+    int getNumerator() const { return Numerator; };
+    int getDenominator() const { return Denominator; };
+    int getWhole() const { return Whole; };
+    SimpleFraction getSimpleFraction() const {
+        return SimpleFraction(Sign*(Whole*Denominator + Numerator), Denominator);
+    };
+};
+
+// Перегружаем оператор + для суммирования обычных дробей
+
+SimpleFraction operator+ (const SimpleFraction &sf1, const SimpleFraction &sf2) {
+    int newNumerator = 0;
+    int newDenominator = 0;
+    int NOD = 0;
+    newNumerator = (sf1.Sign*sf1.Numerator*sf2.Denominator + sf2.Sign*sf2.Numerator*sf1.Denominator);
+    newDenominator = sf1.Denominator*sf2.Denominator;
+    NOD = getNOD(abs(newNumerator),newDenominator);
+    newNumerator = newNumerator/NOD;
+    newDenominator = newDenominator/NOD;
+    return SimpleFraction(newNumerator,newDenominator);
+};
+
+SimpleFraction operator- (const SimpleFraction &sf1) {
+    SimpleFraction temp(sf1);
+    temp.reverseSign();
+    return temp;
+}
+
+MixedFraction operator- (const MixedFraction &mf2) {
+    MixedFraction temp(mf2);
+    temp.reverseSign();
+    return temp;
+}
+
+// Перегружаем оператор + для суммирования составных дробей
+
+MixedFraction operator+ (const MixedFraction &mf1, const MixedFraction &mf2) {
+    SimpleFraction tmp = mf1.getSimpleFraction() + mf2.getSimpleFraction();
+    return MixedFraction(0,tmp.getNumerator(), tmp.getDenominator());
+};
+
+MixedFraction operator+ (const MixedFraction &mf1, const SimpleFraction &sf2) {
+    SimpleFraction tmp = mf1.getSimpleFraction() + sf2;
+    return MixedFraction(0,tmp.getNumerator(), tmp.getDenominator());
+}
+
+
 int main() {
+/*
+    cout << "Task 1"<< endl;
 
     Rectangle rec(4.0, 5.0);
 
@@ -86,11 +252,34 @@ int main() {
     Figure *fsqr = new Square(1.414213);
     Figure *fcir = new Circle(1.784128);
 
-
     cout<< frec->getArea()<<endl;
     cout<< fpar->getArea()<<endl;
     cout<< fsqr->getArea()<<endl;
     cout<< fcir->getArea()<<endl;
+*/
 
+/*
+    cout << "Task 2"<< endl;
+    Car car("Rio","Kia");
+    PassengerCar pcar("Focus","Ford");
+    Bus bus("Transit","Ford");
+    Minivan van("My","Dream"); // Срабатывают оба конструктора
+
+ */
+    cout << "Task 3" << endl;
+
+    SimpleFraction s1(-15,7), s2(9,7);
+    MixedFraction m1(2,15,8), m2(-1,3,8);
+    s1 = s1 + s2;
+    s1.printValues();
+    m1 = m1 + m2;
+    m1.printValues();
+    m1 = m1 + s1;
+    m1.printValues();
+
+    s1 = -s1;
+    s1.printValues();
+    m1 = -m1;
+    m1.printValues();
     return EXIT_SUCCESS;
 }
