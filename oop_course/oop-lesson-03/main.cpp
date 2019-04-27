@@ -145,11 +145,13 @@ public:
         assert(denominator > 0);
         Numerator = numerator;
         Denominator = denominator;
-        //cout << "Normal Fraction constructor" << endl;
     }
-    void reverseSign() {
-        Sign = -Sign;
-    }
+    //Наличие чисто виртуальной функции делает класс абстрактным
+    virtual void reverseSign() = 0;
+
+    int getNumerator() const { return Numerator; };
+    int getDenominator() const { return Denominator; };
+    int getSign() const { return Sign;};
 };
 
 class SimpleFraction: public Fraction {
@@ -158,16 +160,25 @@ public:
     SimpleFraction(int numerator, int denominator): Fraction(abs(numerator), denominator) {
         if (numerator < 0) Sign = -1;
     }
-
     void printValues() const {
         cout << ((Sign < 0) ? "-": "") << Numerator << "/" << Denominator << endl;
     }
 
-    int getNumerator() const { return Numerator; };
-    int getDenominator() const { return Denominator; };
-    friend SimpleFraction operator+ (const SimpleFraction &sf1, const SimpleFraction &sf2);
+    void reverseSign() {
+        Sign = -Sign;
+    }
 
+    SimpleFraction reverseFraction() {
+        int buf = Numerator;
+        Numerator = Denominator;
+        Denominator = buf;
+        return *this;
+    };
+
+    friend SimpleFraction operator+ (const SimpleFraction &sf1, const SimpleFraction &sf2);
     friend SimpleFraction operator- (const SimpleFraction &sf1);
+    friend SimpleFraction operator* (const SimpleFraction &sf1, const SimpleFraction &sf2);
+    friend SimpleFraction operator/ (const SimpleFraction &sf1, const SimpleFraction &sf2);
 
 };
 
@@ -179,24 +190,41 @@ public:
     MixedFraction(){}
     MixedFraction(int whole, int numerator, int denominator): Fraction(abs(numerator), denominator), Whole(abs(whole)) {
         assert(( numerator >= 0 ) || ( whole == 0 && numerator <0 ));
-        if (whole < 0 || numerator < 0) Sign = -1;
+        if ((whole < 0) || (numerator < 0)) Sign = -1;
         if (Numerator > Denominator) {
             Whole+= Numerator/Denominator;
             Numerator = Numerator % Denominator;
         }
     }
+    void reverseSign() {
+        Sign = -Sign;
+    }
     void printValues() {
         cout << ((Sign < 0) ? "-": "") << Whole << "(" << Numerator << "/" << Denominator << ")" << endl;
     }
 
-    int getNumerator() const { return Numerator; };
-    int getDenominator() const { return Denominator; };
     int getWhole() const { return Whole; };
+
     SimpleFraction getSimpleFraction() const {
         return SimpleFraction(Sign*(Whole*Denominator + Numerator), Denominator);
     };
 };
 
+
+
+// Перегружаем унарный -
+
+SimpleFraction operator- (const SimpleFraction &sf1) {
+    SimpleFraction temp(sf1);
+    temp.reverseSign();
+    return temp;
+}
+
+MixedFraction operator- (const MixedFraction &mf2) {
+    MixedFraction temp(mf2);
+    temp.reverseSign();
+    return temp;
+}
 // Перегружаем оператор + для суммирования обычных дробей
 
 SimpleFraction operator+ (const SimpleFraction &sf1, const SimpleFraction &sf2) {
@@ -211,29 +239,56 @@ SimpleFraction operator+ (const SimpleFraction &sf1, const SimpleFraction &sf2) 
     return SimpleFraction(newNumerator,newDenominator);
 };
 
-SimpleFraction operator- (const SimpleFraction &sf1) {
-    SimpleFraction temp(sf1);
-    temp.reverseSign();
-    return temp;
-}
-
-MixedFraction operator- (const MixedFraction &mf2) {
-    MixedFraction temp(mf2);
-    temp.reverseSign();
-    return temp;
-}
-
-// Перегружаем оператор + для суммирования составных дробей
+// Перегружаем бинарный + для суммирования составных дробей
 
 MixedFraction operator+ (const MixedFraction &mf1, const MixedFraction &mf2) {
     SimpleFraction tmp = mf1.getSimpleFraction() + mf2.getSimpleFraction();
-    return MixedFraction(0,tmp.getNumerator(), tmp.getDenominator());
+    return MixedFraction(0,tmp.getSign()*tmp.getNumerator(), tmp.getDenominator());
 };
 
 MixedFraction operator+ (const MixedFraction &mf1, const SimpleFraction &sf2) {
     SimpleFraction tmp = mf1.getSimpleFraction() + sf2;
-    return MixedFraction(0,tmp.getNumerator(), tmp.getDenominator());
+    return MixedFraction(0,tmp.getSign()*tmp.getNumerator(), tmp.getDenominator());
 }
+
+// Перегрузка оператора *
+
+SimpleFraction operator* (const SimpleFraction &sf1, const SimpleFraction&sf2) {
+    int newNumerator = 0;
+    int newDenominator = 0;
+    int NOD = 0;
+
+    newNumerator = sf1.Sign*sf1.Numerator*sf2.Sign*sf2.Numerator;
+    newDenominator = sf1.Denominator*sf2.Denominator;
+    NOD = getNOD(abs(newNumerator),newDenominator);
+    // cout << "NOD " << NOD << " newNumerator " << newNumerator << " newDenominator " << newDenominator << endl;
+    newNumerator = newNumerator/NOD;
+    newDenominator = newDenominator/NOD;
+    return SimpleFraction(newNumerator,newDenominator);;
+}
+
+MixedFraction operator* (const MixedFraction &mf1, const MixedFraction &mf2) {
+    SimpleFraction tmp = mf1.getSimpleFraction()*mf2.getSimpleFraction();
+    return MixedFraction(0,tmp.getSign()*tmp.getNumerator(), tmp.getDenominator());
+}
+
+MixedFraction operator* (const MixedFraction &mf1, const SimpleFraction &sf2) {
+    SimpleFraction tmp = mf1.getSimpleFraction()*sf2;
+    return MixedFraction(0,tmp.getSign()*tmp.getNumerator(), tmp.getDenominator());
+}
+
+// Перегрузка оператора /
+
+SimpleFraction operator/ (const SimpleFraction &sf1, const SimpleFraction &sf2) {
+    SimpleFraction tmp(sf2);
+    return sf1*tmp.reverseFraction();;
+}
+
+MixedFraction operator/ (const MixedFraction &sf1, const MixedFraction &sf2) {
+    MixedFraction tmp(sf2);
+    return sf1*tmp;
+}
+
 
 
 int main() {
@@ -268,8 +323,8 @@ int main() {
  */
     cout << "Task 3" << endl;
 
-    SimpleFraction s1(-15,7), s2(9,7);
-    MixedFraction m1(2,15,8), m2(-1,3,8);
+    SimpleFraction s1(-1,3), s2(2,3);
+    MixedFraction m1(2,1,2), m2(-1,1,2);
     s1 = s1 + s2;
     s1.printValues();
     m1 = m1 + m2;
@@ -281,5 +336,19 @@ int main() {
     s1.printValues();
     m1 = -m1;
     m1.printValues();
+
+    s1 = s1*s1;
+    s1.printValues();
+
+    m1 = m1*m1;
+    m1.printValues();
+
+    m2 = m1*s2;
+    m2.printValues();
+
+    SimpleFraction s3(2,3), s4(3,4);
+    s3 = s3*s4;
+    s3.printValues();
+
     return EXIT_SUCCESS;
 }
