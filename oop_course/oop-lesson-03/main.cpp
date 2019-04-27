@@ -151,7 +151,7 @@ public:
 
     int getNumerator() const { return Numerator; };
     int getDenominator() const { return Denominator; };
-    int getSign() const { return Sign;};
+    int getSign() const {return Sign;};
 };
 
 class SimpleFraction: public Fraction {
@@ -225,7 +225,7 @@ MixedFraction operator- (const MixedFraction &mf2) {
     temp.reverseSign();
     return temp;
 }
-// Перегружаем оператор + для суммирования обычных дробей
+// Перегружаем бинарный + для суммирования обычных дробей
 
 SimpleFraction operator+ (const SimpleFraction &sf1, const SimpleFraction &sf2) {
     int newNumerator = 0;
@@ -286,7 +286,8 @@ SimpleFraction operator/ (const SimpleFraction &sf1, const SimpleFraction &sf2) 
 
 MixedFraction operator/ (const MixedFraction &sf1, const MixedFraction &sf2) {
     MixedFraction tmp(sf2);
-    return sf1*tmp;
+    SimpleFraction result = sf1.getSimpleFraction()*tmp.getSimpleFraction().reverseFraction();
+    return MixedFraction(0,result.getSign()*result.getNumerator(), result.getDenominator());
 }
 
 
@@ -349,6 +350,12 @@ int main() {
     SimpleFraction s3(2,3), s4(3,4);
     s3 = s3*s4;
     s3.printValues();
+
+    MixedFraction m3(2,1,4), m4(1,1,2);
+    m3 = m3/m4;
+    m3.printValues();
+
+    s3.reverseFraction().printValues();
 
     return EXIT_SUCCESS;
 }
