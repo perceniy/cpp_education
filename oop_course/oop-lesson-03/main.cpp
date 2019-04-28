@@ -179,7 +179,9 @@ public:
     friend SimpleFraction operator- (const SimpleFraction &sf1);
     friend SimpleFraction operator* (const SimpleFraction &sf1, const SimpleFraction &sf2);
     friend SimpleFraction operator/ (const SimpleFraction &sf1, const SimpleFraction &sf2);
-
+    friend bool operator== (const SimpleFraction &sf1, const SimpleFraction &sf2);
+    friend bool operator>  (const SimpleFraction &sf1, const SimpleFraction &sf2);
+    friend bool operator<  (const SimpleFraction &sf1, const SimpleFraction &sf2);
 };
 
 class MixedFraction: public Fraction {
@@ -290,10 +292,36 @@ MixedFraction operator/ (const MixedFraction &sf1, const MixedFraction &sf2) {
     return MixedFraction(0,result.getSign()*result.getNumerator(), result.getDenominator());
 }
 
+//Перегрузка логических операторов
+
+bool operator == (const SimpleFraction &sf1, const SimpleFraction &sf2 ) {
+
+    return sf1.Sign * sf1.Numerator * sf2.Denominator == sf2.Sign * sf2.Numerator * sf1.Denominator;
+}
+
+bool operator != (const SimpleFraction &sf1, const SimpleFraction &sf2 ) {
+    return !(sf1 == sf2);
+}
+
+bool operator> (const SimpleFraction &sf1, const SimpleFraction &sf2 ) {
+    return sf1.Sign * sf1.Numerator * sf2.Denominator > sf2.Sign * sf2.Numerator * sf1.Denominator;
+}
+
+bool operator< (const SimpleFraction &sf1, const SimpleFraction &sf2 ){
+    return sf1.Sign*sf1.Numerator*sf2.Denominator < sf2.Sign*sf2.Numerator*sf1.Denominator;
+}
+
+bool operator>= (const SimpleFraction &sf1, const SimpleFraction &sf2 ){
+    return !(sf1<sf2);
+}
+
+bool operator<= (const SimpleFraction &sf1, const SimpleFraction &sf2 ){
+    return !(sf1>sf2);
+}
 
 
 int main() {
-/*
+
     cout << "Task 1"<< endl;
 
     Rectangle rec(4.0, 5.0);
@@ -312,50 +340,61 @@ int main() {
     cout<< fpar->getArea()<<endl;
     cout<< fsqr->getArea()<<endl;
     cout<< fcir->getArea()<<endl;
-*/
 
-/*
-    cout << "Task 2"<< endl;
+
+
+    cout << endl << "Task 2"<< endl;
     Car car("Rio","Kia");
     PassengerCar pcar("Focus","Ford");
     Bus bus("Transit","Ford");
     Minivan van("My","Dream"); // Срабатывают оба конструктора
 
- */
-    cout << "Task 3" << endl;
+
+    cout << endl << "Task 3" << endl;
 
     SimpleFraction s1(-1,3), s2(2,3);
     MixedFraction m1(2,1,2), m2(-1,1,2);
+    cout <<"s1 = s1 + s2"<< endl;
     s1 = s1 + s2;
     s1.printValues();
+    cout <<"m1 = m1 + m2"<< endl;
     m1 = m1 + m2;
     m1.printValues();
+    cout <<"m1 = m1 + s1"<< endl;
     m1 = m1 + s1;
     m1.printValues();
-
+    cout <<"s1 = -s1"<< endl;
     s1 = -s1;
     s1.printValues();
+    cout <<"m1 = -m1"<< endl;
     m1 = -m1;
     m1.printValues();
-
+    cout <<"s1 = s1*s1"<< endl;
     s1 = s1*s1;
     s1.printValues();
-
+    cout <<"m1 = m1*m1"<< endl;
     m1 = m1*m1;
     m1.printValues();
-
+    cout <<"m2 = m1*s2"<< endl;
     m2 = m1*s2;
     m2.printValues();
 
     SimpleFraction s3(2,3), s4(3,4);
-    s3 = s3*s4;
+    cout <<"s3 = s3/s4"<< endl;
+    s3 = s3/s4;
     s3.printValues();
 
     MixedFraction m3(2,1,4), m4(1,1,2);
+    cout <<"m3 = m3/m4"<< endl;
     m3 = m3/m4;
     m3.printValues();
 
-    s3.reverseFraction().printValues();
+    if (s3 > s1) printf("s3 > s1\n");
+    if (s3 < s1) printf("s3 < s1\n");
+    if (s3 == s1) printf("s3 = s1\n");
+    if (s3 != s1) printf("s3 != s1\n");
+    if (s3 >= s1) printf("s3 >= s1\n");
+    if (s3 <= s1) printf("s3 <= s1\n");
 
     return EXIT_SUCCESS;
 }

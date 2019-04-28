@@ -135,7 +135,6 @@ void printString(myString* S) {
 
 int main()
 {
-
     // Открываем файл с исходыми данными
     FILE* file = fopen("../test.txt", "r");
     char temp[MAX_LENGTH];
