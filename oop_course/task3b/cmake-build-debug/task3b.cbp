@@ -80,7 +80,7 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/task3b/main.cpp">
+		<Unit filename="/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/task3b/main.c">
 			<Option target="task3b"/>
 		</Unit>
 		<Unit filename="/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/task3b/CMakeLists.txt">
