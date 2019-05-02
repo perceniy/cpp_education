@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 
 #define MAX_LENGTH 1024
 
@@ -124,18 +123,59 @@ void convertNumbers(myString* S) {
             }
     }
     if (counter > 0 ) push(&result, hex[idx]);
-    while (getFront(&result,&ch)) push(S, ch);
+    //снова записываем в обратном порядке, чтобы вернуть исходный порядок символов
+    while (getBack(&result,&ch)) push(S, ch);
 };
 
 void printString(myString* S) {
     char ch;
-    // При конвертации мы вновь обратили порядок символов, поэтому выводим на экран через getBack
-    while (getBack(S, &ch)) printf("%c", ch);
+    while (getFront(S, &ch)) printf("%c", ch);
+    printf("\n");
 };
 
-int main()
-{
-    // Открываем файл с исходыми данными
+int main() {
+    char temp[MAX_LENGTH];
+    char chr = ' ';
+    char flagEOL = '\n';
+    int idx = 0;
+
+    myString source = initString();
+    myString workString = initString();
+
+    //Цикл считывания строк
+    //Для окончаня ввода нужно ввести ключевое слово EOF
+
+    do {
+        scanf("%s%c",temp, &flagEOL);
+        if ((temp[0] == 'E') & (temp[1] == 'O') & (temp[2] == 'F')) break;
+        idx = 0;
+        while (temp[idx] != '\0') {
+            if ((temp[idx] == '1') | (temp[idx] == '0')) push(&source, temp[idx]);
+            idx++;
+        }
+        if (flagEOL == '\n') {
+            push(&source,'\n');
+        } else {
+            push(&source, ' ');
+        }
+    } while (1);
+
+    //Преобразования строк
+
+    while (getFront(&source, &chr)) {
+        if (chr == '\n') {
+            convertNumbers(&workString);
+            printString(&workString);
+
+        } else {
+            push(&workString, chr);
+        }
+    }
+
+    return EXIT_SUCCESS;
+
+    /** Вариант для считывания записей из файла **/
+    /*
     FILE* file = fopen("../test.txt", "r");
     char temp[MAX_LENGTH];
     char flagEOL = '\n';
@@ -149,7 +189,7 @@ int main()
     } else {
         printf("Reading file...\n");
     }
-    // Cчитываем из файла данные пока не достигнут конец файла
+
     while (fscanf(file, "%s%c", temp, &flagEOL) > 0) {
         idx = 0;
         while (temp[idx] != '\0') {
@@ -159,14 +199,16 @@ int main()
         if (flagEOL == '\n') {
             convertNumbers(&source);
             printString(&source);
-            printf("\n");
+
         } else {
             push(&source, ' ');
         }
+
     };
 
     fclose(file);
 
     return EXIT_SUCCESS;
+    */
 
 };
