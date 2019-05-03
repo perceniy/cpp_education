@@ -1,4 +1,4 @@
-# Install script for directory: /Users/arseniy/Projects/Geekbrains/cpp_init/testThread
+# Install script for directory: /Users/arseniy/Projects/Geekbrains/cpp_education/cpp_init_cource/testThread
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/arseniy/Projects/Geekbrains/cpp_init/testThread/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/arseniy/Projects/Geekbrains/cpp_education/cpp_init_cource/testThread/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
