@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/arseniy/Projects/Geekbrains/cpp_education/algorithms/alg-lesson-06/main.c
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+
