@@ -1,3 +1,0 @@
-/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop-lesson-03/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop-lesson-03/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop-lesson-03/cmake-build-debug/CMakeFiles/oop_lesson_03.dir
