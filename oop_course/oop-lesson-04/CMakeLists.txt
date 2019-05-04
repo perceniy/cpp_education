@@ -3,4 +3,5 @@ project(oop_lesson_04)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(oop_lesson_04 main.cpp)
+include_directories(headers/)
+add_executable(oop_lesson_04 src/main.cpp)

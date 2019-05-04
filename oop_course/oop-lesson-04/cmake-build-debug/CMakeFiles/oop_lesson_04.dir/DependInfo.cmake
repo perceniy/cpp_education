@@ -4,12 +4,13 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop-lesson-04/main.cpp" "/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop-lesson-04/cmake-build-debug/CMakeFiles/oop_lesson_04.dir/main.cpp.o"
+  "/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop-lesson-04/src/main.cpp" "/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop-lesson-04/cmake-build-debug/CMakeFiles/oop_lesson_04.dir/src/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "../headers"
   )
 
 # Targets to which this target links.

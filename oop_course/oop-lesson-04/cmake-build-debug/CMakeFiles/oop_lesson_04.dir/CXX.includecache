@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../headers/ArrayInt.h
+cassert
+-
+
+/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop-lesson-04/src/main.cpp
+iostream
+-
+vector
+-
+ArrayInt.h
+-
+
