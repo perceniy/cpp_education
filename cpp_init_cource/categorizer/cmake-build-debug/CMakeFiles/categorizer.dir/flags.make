@@ -6,5 +6,5 @@ CXX_FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sd
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/Users/arseniy/Projects/Geekbrains/cpp_init/categorizer/include 
+CXX_INCLUDES = -I/Users/arseniy/Projects/Geekbrains/cpp_education/cpp_init_cource/categorizer/include 
 
