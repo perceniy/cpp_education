@@ -3,4 +3,5 @@
 
 CMakeFiles/oop_lesson_04.dir/src/main.cpp.o
  ../headers/ArrayInt.h
+ ../headers/Queue.h
  /Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop-lesson-04/src/main.cpp

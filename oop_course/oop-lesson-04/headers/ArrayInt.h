@@ -189,7 +189,7 @@ public:
         --m_length;
     }
 
-    void insertArray(int index, int array[], int a_length) {
+    void insertArray(int index, int* array, int a_length) {
         // Функция вставляет в исходный массив элементы из нового массива, начиная с позиции index;
         assert(index >= 0 && index < m_length);
 
@@ -197,7 +197,7 @@ public:
 
         for (int i = 0; i < index; ++i) data[i] = m_data[i];
         for (int i = 0; i < a_length; ++i) data[index + i] = array[i];
-        for (int i = index; i < m_length; ++i) data[index + a_length + i] = m_data[i];
+        for (int i = index; i < m_length; ++i) data[i + a_length] = m_data[i];
 
         delete[] m_data;
         m_data = data;
