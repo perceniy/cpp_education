@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop-lesson-06/main.cpp
+iostream
+-
+string
+-
+queue
+-
+iomanip
+-
+sys/ioctl.h
+-
+unistd.h
+-
+
