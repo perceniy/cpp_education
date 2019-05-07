@@ -57,6 +57,6 @@ int main()
 
     StringValuePair<int> svp(str, 7);
     std::cout << "Pair: " << svp.first() << ' ' << svp.second() << '\n';
-    
+
     return EXIT_SUCCESS;
 }
