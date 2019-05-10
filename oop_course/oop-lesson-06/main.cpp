@@ -8,6 +8,8 @@
 
 using namespace std;
 
+// Task 1
+
 int getNOD (int a, int b) {
     if ( a<= 0 || b <= 0 ) return 0;
     int tmp = 0;
@@ -126,7 +128,7 @@ SimpleFraction operator* (const SimpleFraction &sf1, const SimpleFraction&sf2) {
 
 //Task 2
 
-void inputFunc(){
+void inputString(){
     queue<string> Q;
     string str1 = "";
     string str2 = "";
@@ -154,9 +156,37 @@ void inputFunc(){
     }
 }
 
+//Task 3
+
+void inputInt() {
+    int length = 0;
+    int isCorrect = 1;
+    string str1;
+    while (getline(cin,str1)) {
+        if (str1 == "") break;
+        length = str1.length();
+        isCorrect = 1;
+        for (int i = 0; i < length; ++i) {
+            if (str1[i] < '0' || str1[i] > '9') {
+                isCorrect = 0;
+                break;
+            }
+        }
+        if (isCorrect) {
+            cout << "Ok, good!" << endl;
+            return;
+        } else {
+            cout << "Wrong number, try once more" << endl;
+        }
+    }
+}
+
+//Task 4
+
 ostream& endll(ostream& os) {
     os.put('\n');
     os.put('\n');
+    os.flush();
     return os;
 }
 
@@ -169,6 +199,7 @@ int main() {
     cin >> f1;
 
     SimpleFraction f2;
+
     cout << "Enter fraction 2: ";
     cin >> f2;
 
@@ -176,13 +207,17 @@ int main() {
 
     cout << endl << "============ Task 2 ============" << endl << endl;
 
-    inputFunc();
+    inputString();
+
+    cout << endl << "============ Task 3 ============" << endl << endl;
+
+    inputInt();
 
     cout << endl << "============ Task 4 ============" << endl << endl;
 
-    cout << "Ap" << endll;
+    cout << "Fitst line" << endll;
+    cout << "Second Line" << endl;
 
-    cout << "op";
 
     return EXIT_SUCCESS;
 }
