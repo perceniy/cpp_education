@@ -80,8 +80,8 @@ public:
     void Clear()
     {
         // проходит по вектору, освобождая всю память в куче
-        //vector<Card*>::iterator iter = m_Cards.begin();
-        vector<Card*>::iterator iter;
+        vector<Card*>::iterator iter = m_Cards.begin();
+
         for (iter = m_Cards.begin(); iter != m_Cards.end(); ++iter)
         {
             delete *iter;
@@ -154,7 +154,7 @@ int Hand::GetTotal() const
 class GenericPlayer : public Hand
 {
 public:
-    GenericPlayer(){};
+    GenericPlayer() = default;
 
     GenericPlayer(const string& name):m_Name(name) {};
 
@@ -168,7 +168,7 @@ public:
     // сумму очков большую 21
     // данная функция не виртуальная, т.к. имеет одинаковую реализацию
     // для игрока и дилера
-    bool IsBusted() const;
+    virtual bool IsBusted() const;
 
     // объявляет, что игрок имеет перебор
     // функция одинакова как для игрока, так и для дилера
@@ -296,7 +296,12 @@ void House::FlipFirstCard() {
 
 class Deck : public Hand {
 public:
-    Deck();
+    Deck() {
+        m_Cards.reserve(52);
+        Populate();
+    }
+
+    virtual ~Deck() = default;
 
     // создает стандартную колоду из 52 карт
     void Populate();
@@ -309,15 +314,7 @@ public:
 
     // дает дополнительные карты игроку
     void AdditionalCards(GenericPlayer& aGenericPlayer);
-
-    virtual ~Deck() {};
 };
-
-Deck::Deck()
-{
-    m_Cards.reserve(52);
-    Populate();
-}
 
 void Deck::Populate()
 {
@@ -358,8 +355,12 @@ void Deck::AdditionalCards(GenericPlayer& aGenericPlayer)
     cout << endl;
     // продолжает раздавать карты до тех пор, пока у игрока не случается
     // перебор или пока он хочет взять еще одну карту
+    int i = 0;
     while (!(aGenericPlayer.IsBusted()) && aGenericPlayer.IsHitting())
     {
+        ++i;
+        cout<< aGenericPlayer.GetTotal() << endl;
+        if (i > 10) break;
         Deal(aGenericPlayer);
         cout << aGenericPlayer << endl;
 
@@ -402,6 +403,7 @@ Game::Game(const vector<string>& names)
     m_Deck.Populate();
 
     m_Deck.Shuffle();
+
 }
 
 void Game::Play()
@@ -410,6 +412,7 @@ void Game::Play()
     vector<Player>::iterator pPlayer;
     for (int i = 0; i < 2; ++i)
     {
+
         for (pPlayer = m_Players.begin(); pPlayer != m_Players.end(); ++pPlayer)
         {
             m_Deck.Deal(*pPlayer);
@@ -425,13 +428,14 @@ void Game::Play()
     {
         cout << *pPlayer << endl;
     }
-    cout << m_House << endl;
+    cout << "Dealer" << m_House << endl;
 
     // раздает игрокам дополнительные карты
     for (pPlayer = m_Players.begin(); pPlayer != m_Players.end(); ++pPlayer)
     {
         m_Deck.AdditionalCards(*pPlayer);
     }
+
 
     // показывает первую карту дилера
     m_House.FlipFirstCard();
