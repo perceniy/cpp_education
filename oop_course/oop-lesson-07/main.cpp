@@ -19,6 +19,9 @@ public:
     int get_year() const {
         return m_year;
     }
+    int get_int_date() const {
+        return m_year*10000 + m_month*100 + m_day;
+    }
 };
 
 ostream& operator<<(ostream& os, const Date& date) {
@@ -30,6 +33,17 @@ ostream& operator<<(ostream& os, const Date& date) {
 
     return os;
 }
+
+// Task 3
+
+Date maxDate(const unique_ptr<Date>& date1, const unique_ptr<Date>& date2) {
+
+    return date1->get_int_date() > date2->get_int_date() ? *date1 : *date2;
+}
+
+void swapDates(const unique_ptr<Date>& date1, const unique_ptr<Date>& date2)
+
+
 
 int main() {
     cout << endl << "<----------TASK 2---------->" << endl << endl;
@@ -51,6 +65,13 @@ int main() {
 
     cout << endl << "<----------TASK 3---------->" << endl << endl;
 
+    unique_ptr<Date> date1 = make_unique<Date>(1998,9,4);
+    unique_ptr<Date> date2 = make_unique<Date>(1997,9,23);
+
+    cout << "Date 1 is: " << *date1 << endl;
+    cout << "Date 2 is: " << *date2 << endl;
+
+    cout << "Largest date is " << maxDate(date1, date2);
 
     return EXIT_SUCCESS;
 }
