@@ -6,15 +6,29 @@
 
 #IncludeRegexTransform: 
 
-/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/main.cpp
-iostream
--
-string
--
+/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/card.h
 vector
 -
-algorithm
+
+/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/game.cpp
+game.h
+/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/game.h
+player.h
+/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/player.h
+iostream
 -
-ctime
+
+/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/game.h
+vector
 -
+card.h
+/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/card.h
+player.h
+/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/player.h
+
+/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/player.h
+string
+-
+card.h
+/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/card.h
 

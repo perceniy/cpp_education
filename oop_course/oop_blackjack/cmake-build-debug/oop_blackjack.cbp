@@ -80,7 +80,25 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/card.cpp">
+			<Option target="oop_blackjack"/>
+		</Unit>
+		<Unit filename="/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/card.h">
+			<Option target="oop_blackjack"/>
+		</Unit>
+		<Unit filename="/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/game.cpp">
+			<Option target="oop_blackjack"/>
+		</Unit>
+		<Unit filename="/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/game.h">
+			<Option target="oop_blackjack"/>
+		</Unit>
 		<Unit filename="/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/main.cpp">
+			<Option target="oop_blackjack"/>
+		</Unit>
+		<Unit filename="/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/player.cpp">
+			<Option target="oop_blackjack"/>
+		</Unit>
+		<Unit filename="/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/player.h">
 			<Option target="oop_blackjack"/>
 		</Unit>
 		<Unit filename="/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/CMakeLists.txt">

@@ -4,7 +4,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/card.cpp" "/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/cmake-build-debug/CMakeFiles/oop_blackjack.dir/card.cpp.o"
+  "/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/game.cpp" "/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/cmake-build-debug/CMakeFiles/oop_blackjack.dir/game.cpp.o"
   "/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/main.cpp" "/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/cmake-build-debug/CMakeFiles/oop_blackjack.dir/main.cpp.o"
+  "/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/player.cpp" "/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/cmake-build-debug/CMakeFiles/oop_blackjack.dir/player.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 

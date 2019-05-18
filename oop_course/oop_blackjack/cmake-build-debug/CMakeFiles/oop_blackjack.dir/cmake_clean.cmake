@@ -1,5 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/oop_blackjack.dir/main.cpp.o"
+  "CMakeFiles/oop_blackjack.dir/card.cpp.o"
+  "CMakeFiles/oop_blackjack.dir/game.cpp.o"
+  "CMakeFiles/oop_blackjack.dir/player.cpp.o"
   "oop_blackjack.pdb"
   "oop_blackjack"
 )

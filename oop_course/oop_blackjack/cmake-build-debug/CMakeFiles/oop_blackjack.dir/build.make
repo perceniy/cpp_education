@@ -70,17 +70,62 @@ CMakeFiles/oop_blackjack.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_blackjack.dir/main.cpp.s"
 	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/main.cpp -o CMakeFiles/oop_blackjack.dir/main.cpp.s
 
+CMakeFiles/oop_blackjack.dir/card.cpp.o: CMakeFiles/oop_blackjack.dir/flags.make
+CMakeFiles/oop_blackjack.dir/card.cpp.o: ../card.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/oop_blackjack.dir/card.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_blackjack.dir/card.cpp.o -c /Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/card.cpp
+
+CMakeFiles/oop_blackjack.dir/card.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/oop_blackjack.dir/card.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/card.cpp > CMakeFiles/oop_blackjack.dir/card.cpp.i
+
+CMakeFiles/oop_blackjack.dir/card.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_blackjack.dir/card.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/card.cpp -o CMakeFiles/oop_blackjack.dir/card.cpp.s
+
+CMakeFiles/oop_blackjack.dir/game.cpp.o: CMakeFiles/oop_blackjack.dir/flags.make
+CMakeFiles/oop_blackjack.dir/game.cpp.o: ../game.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/oop_blackjack.dir/game.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_blackjack.dir/game.cpp.o -c /Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/game.cpp
+
+CMakeFiles/oop_blackjack.dir/game.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/oop_blackjack.dir/game.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/game.cpp > CMakeFiles/oop_blackjack.dir/game.cpp.i
+
+CMakeFiles/oop_blackjack.dir/game.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_blackjack.dir/game.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/game.cpp -o CMakeFiles/oop_blackjack.dir/game.cpp.s
+
+CMakeFiles/oop_blackjack.dir/player.cpp.o: CMakeFiles/oop_blackjack.dir/flags.make
+CMakeFiles/oop_blackjack.dir/player.cpp.o: ../player.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/oop_blackjack.dir/player.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_blackjack.dir/player.cpp.o -c /Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/player.cpp
+
+CMakeFiles/oop_blackjack.dir/player.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/oop_blackjack.dir/player.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/player.cpp > CMakeFiles/oop_blackjack.dir/player.cpp.i
+
+CMakeFiles/oop_blackjack.dir/player.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_blackjack.dir/player.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/player.cpp -o CMakeFiles/oop_blackjack.dir/player.cpp.s
+
 # Object files for target oop_blackjack
 oop_blackjack_OBJECTS = \
-"CMakeFiles/oop_blackjack.dir/main.cpp.o"
+"CMakeFiles/oop_blackjack.dir/main.cpp.o" \
+"CMakeFiles/oop_blackjack.dir/card.cpp.o" \
+"CMakeFiles/oop_blackjack.dir/game.cpp.o" \
+"CMakeFiles/oop_blackjack.dir/player.cpp.o"
 
 # External object files for target oop_blackjack
 oop_blackjack_EXTERNAL_OBJECTS =
 
 oop_blackjack: CMakeFiles/oop_blackjack.dir/main.cpp.o
+oop_blackjack: CMakeFiles/oop_blackjack.dir/card.cpp.o
+oop_blackjack: CMakeFiles/oop_blackjack.dir/game.cpp.o
+oop_blackjack: CMakeFiles/oop_blackjack.dir/player.cpp.o
 oop_blackjack: CMakeFiles/oop_blackjack.dir/build.make
 oop_blackjack: CMakeFiles/oop_blackjack.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable oop_blackjack"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable oop_blackjack"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/oop_blackjack.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
