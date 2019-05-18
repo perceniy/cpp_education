@@ -7,6 +7,8 @@
 
 #include <string>
 #include "card.h"
+#include <iostream>
+
 using namespace std;
 
 // абстрактный класс

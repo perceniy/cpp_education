@@ -1,10 +1,7 @@
 //
 // Created by Арсений Сысоев on 2019-05-17.
 //
-#include <iostream>
 #include "card.h"
-
-using namespace std;
 
 Card::Card(rank r, suit s, bool ifu) : m_Rank(r), m_Suit(s), m_IsFaceUp(ifu)
 {}

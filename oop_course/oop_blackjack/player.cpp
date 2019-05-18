@@ -4,9 +4,6 @@
 
 #include "player.h"
 #include "card.h"
-#include <iostream>
-
-using namespace std;
 
 GenericPlayer::GenericPlayer(const string& name) :
         m_Name(name)
