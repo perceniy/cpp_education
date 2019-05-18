@@ -95,5 +95,4 @@ public:
 };
 
 
-
 #endif //OOP_BLACKJACK_PLAYER_H

@@ -9,10 +9,6 @@
 
 using namespace std;
 
-// прототипы функций
-ostream& operator<<(ostream& os, const Card& aCard);
-ostream& operator<<(ostream& os, const GenericPlayer& aGenericPlayer);
-
 int main()
 {
     cout << "\t\tWelcome to Blackjack!\n\n";

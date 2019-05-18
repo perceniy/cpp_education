@@ -6,21 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/card.cpp
-card.h
-/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/card.h
-
 /Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/card.h
 vector
 -
-iostream
--
-
-/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/game.cpp
-game.h
-/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/game.h
-player.h
-/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/player.h
 iostream
 -
 
@@ -47,12 +35,6 @@ player.h
 /Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/player.h
 game.h
 /Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/game.h
-
-/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/player.cpp
-player.h
-/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/player.h
-card.h
-/Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/card.h
 
 /Users/arseniy/Projects/Geekbrains/cpp_education/oop_course/oop_blackjack/player.h
 string
