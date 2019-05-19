@@ -41,7 +41,9 @@ Date maxDate(const unique_ptr<Date>& date1, const unique_ptr<Date>& date2) {
     return date1->get_int_date() > date2->get_int_date() ? *date1 : *date2;
 }
 
-void swapDates(const unique_ptr<Date>& date1, const unique_ptr<Date>& date2)
+void swapDates(unique_ptr<Date>& date1, unique_ptr<Date>& date2) {
+    swap(date1, date2);
+}
 
 
 
@@ -71,7 +73,15 @@ int main() {
     cout << "Date 1 is: " << *date1 << endl;
     cout << "Date 2 is: " << *date2 << endl;
 
-    cout << "Largest date is " << maxDate(date1, date2);
+    cout << "Largest date is " << maxDate(date1, date2) << endl;
+
+    swapDates(date1,date2);
+
+    cout << "After swap" << endl;
+
+    cout << "Date 1 is: " << *date1 << endl;
+    cout << "Date 2 is: " << *date2 << endl;
+
 
     return EXIT_SUCCESS;
 }
