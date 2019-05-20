@@ -1,3 +1,0 @@
-C:/Users/ZamarShoo/Desktop/categorizer/build/CMakeFiles/categorizer.dir
-C:/Users/ZamarShoo/Desktop/categorizer/build/CMakeFiles/ALL_BUILD.dir
-C:/Users/ZamarShoo/Desktop/categorizer/build/CMakeFiles/ZERO_CHECK.dir
