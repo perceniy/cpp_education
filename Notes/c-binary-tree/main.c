@@ -186,14 +186,19 @@ void printTree(Node *root) {
     }
 }
 
-
 //Вывод дерева в диапазоне значения ключей
 
 void inOrderTravers(Node* root, int minKey, int maxKey ) {
     if (root) {
-        inOrderTravers(root->left, minKey, maxKey);
-        if (root->key >= minKey && root->key <= maxKey) {printf("%s ", root->data);}
-        inOrderTravers(root->right, minKey, maxKey);
+        if (minKey < maxKey) {
+            inOrderTravers(root->left, minKey, maxKey);
+            if (root->key >= minKey && root->key <= maxKey) {printf("%s ", root->data);}
+            inOrderTravers(root->right, minKey, maxKey);
+        } else {
+            inOrderTravers(root->right, minKey, maxKey);
+            if (root->key >= maxKey && root->key <= minKey) {printf("%s ", root->data);}
+            inOrderTravers(root->left, minKey, maxKey);
+        }
     }
 }
 
@@ -207,7 +212,7 @@ int main (void) {
 
     Node *Tree = NULL;
 
-    FILE* file = fopen("/Users/arseniy/data/trash/tree_data.txt", "r");
+    FILE* file = fopen("./tree_data.txt", "r");
 
     if (file == NULL) {
         printf("File not found!\n");
@@ -226,10 +231,13 @@ int main (void) {
 
     fclose(file);
 
-    printf("\nPrinting tree:\n");
+    printf("\nTree:\n");
     printTree(Tree);
     printf("\n");
-    inOrderTravers(Tree, 0, 100);
+    printf("\nPrinting tree in ascending keys order:\n");
+    inOrderTravers(Tree, 0, 12);
+    printf("\nPrinting tree in descending keys order:\n");
+    inOrderTravers(Tree, 12, 0);
 
     Node *p = NULL;
 
