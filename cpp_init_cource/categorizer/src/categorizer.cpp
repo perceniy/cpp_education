@@ -147,5 +147,6 @@ int main(int argc, char** args)
         ProcessFile( f, histogram, 256, alphabet);
         f -> close();
     }
+    delete f;
     return 0;
 }
