@@ -2,9 +2,26 @@
 
 using namespace std;
 
-int ExtractNum(fstream *file, const char delimiter)
+/*
+ * Внес изменения:
+ * 1) Избавился от дублирования кода: вынес участок кода, непосредственно печатающий диаграмму в отдельную функцию outputHistogram,
+ * которой на вход можно подавать либо файл, либо стандартный вывод.
+ * 2) Вынес заполнение алфавита в отдельную функцию fillAlphabet, которая вызывается единожды в main,
+ * далее передаем алфавит в функции-обработчики в виде указателя
+ * 3) Сделал динамическое выделение памяти для считываемого файла fstream* f = new fstream;
+ * 4) Передал считываемый файл f в функцию ProcessFile как указатеь
+ *
+ * */
+
+
+void fillAlphabet(int* alphabet) {
+    int j = 0;
+    for(int d = '0'; d <= '9'; d++, j++) alphabet[d] = j;
+}
+
+int ExtractNum(fstream *file, const char delimiter, int* alphabet)
 {
-    int alphabet[256];
+
     char sym;
     int res = 0;
     unsigned int digit_b = static_cast<unsigned int>(file->tellg());
@@ -16,7 +33,6 @@ int ExtractNum(fstream *file, const char delimiter)
 
     unsigned int digit_e = static_cast<unsigned int>(file->tellg()) - 2;
     int j = 0;
-    for(int d = '0'; d <= '9'; d++, j++) alphabet[d] = j;
     int c = 1;
     for(j = digit_e; j >= digit_b; j--, c *= 10)
     {
@@ -28,6 +44,20 @@ int ExtractNum(fstream *file, const char delimiter)
     return res;
 }
 
+void outputHistogram (ostream* os,
+                      unsigned int *histogram,
+                      unsigned int len
+                      )
+{
+    for(int j = 0; j < len; j++)
+    {
+        *os << "[" << j << "] ";
+        for(unsigned int c = 0; c < histogram[j]; c++) *os  << "|";
+        *os << endl;
+    }
+
+}
+
 void BuildHistogram(std::fstream* file,
                     unsigned int* histogram,
                     unsigned int len,
@@ -35,8 +65,11 @@ void BuildHistogram(std::fstream* file,
                     int height)
 {
     char sym;
+
     for(unsigned int d = 0; d < len; ++d)histogram[d] = 0;
+
     file->seekg(static_cast<unsigned int>(file->tellg()) + 4);
+
     for(unsigned int d = 0; d < (width * height); ++d)
     {
         if(file->eof())break;
@@ -44,13 +77,7 @@ void BuildHistogram(std::fstream* file,
         histogram[static_cast<unsigned char>(sym)] += 1;
     }
     cout << endl;
-    for(int j = 0; j < 256; j++)
-    {
-        cout << "[" << j << "] ";
-        for(unsigned int c = 0; c < histogram[j]; c++)
-            cout << "|";
-        cout << endl;
-    }
+    outputHistogram(&cout, histogram, len);
 }
 
 void PrintHistogram(unsigned int *histogram,
@@ -61,22 +88,15 @@ void PrintHistogram(unsigned int *histogram,
     ofstream* out = new ofstream("histogram.txt");
     *out << "Building histogram for graphic file" << endl;
     *out << "Width: " << width << "\t Height: " << height << endl;
-    int max_value = 0;
-    for(unsigned int j = 0; j < len; j++) if (histogram[j] > max_value) max_value = histogram[j];
 
-    for(unsigned int j = 0; j < len; j++)
-    {
-        *out << "[" << j << "] ";
-        for(unsigned int c = 0; c < histogram[j]*100/max_value; c++)
-            *out << "|";
-        *out << endl;
-    }
+    outputHistogram(out, histogram, len);
+
     *out << "End of file " << endl << endl;
     out->close();
     delete out;
 }
 
-void ProcessFile(std::fstream *file, unsigned int* histogram, unsigned int len)
+void ProcessFile(std::fstream *file, unsigned int* histogram, unsigned int len, int* alphabet)
 {
     int width, height;
     width = 0;
@@ -90,10 +110,10 @@ void ProcessFile(std::fstream *file, unsigned int* histogram, unsigned int len)
 
     file->seekg(static_cast<unsigned int>(file->tellg()) + 1);
 
-    width = ExtractNum(file, 0x20);
+    width = ExtractNum(file, 0x20, alphabet);
     cout << "Width: " << width <<  endl;
 
-    height = ExtractNum(file, 0x0A);
+    height = ExtractNum(file, 0x0A, alphabet);
     cout << "Height: " << width <<  endl;
 
     BuildHistogram(file, histogram, len, width, height);
@@ -103,7 +123,7 @@ void ProcessFile(std::fstream *file, unsigned int* histogram, unsigned int len)
 
 int main(int argc, char** args)
 {
-    fstream f;
+    fstream* f = new fstream;
     unsigned int histogram[256];
 
     if(argc == 1)
@@ -111,17 +131,21 @@ int main(int argc, char** args)
         cout << "Please specify input file(s)!" << endl;
         return 1;
     }
+
+    int alphabet[256];
+    fillAlphabet(alphabet);
+
     for(int i = 1; i < argc; i++)
     {
-        f.open(args[i], ios::binary|ios::in);
-        if(!f.is_open())
+        f->open(args[i], ios::binary|ios::in);
+        if(!f->is_open())
         {
             cout << "File: " << args[i] << " is not accessible!" << endl;
             continue;
         }
         cout << "File " << args[i] << " opened" << endl;
-        ProcessFile(&f, histogram, 256);
-        f.close();
+        ProcessFile( f, histogram, 256, alphabet);
+        f -> close();
     }
     return 0;
 }
