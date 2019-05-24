@@ -61,10 +61,13 @@ void PrintHistogram(unsigned int *histogram,
     ofstream* out = new ofstream("histogram.txt");
     *out << "Building histogram for graphic file" << endl;
     *out << "Width: " << width << "\t Height: " << height << endl;
+    int max_value = 0;
+    for(unsigned int j = 0; j < len; j++) if (histogram[j] > max_value) max_value = histogram[j];
+
     for(unsigned int j = 0; j < len; j++)
     {
         *out << "[" << j << "] ";
-        for(unsigned int c = 0; c < histogram[j]; c++)
+        for(unsigned int c = 0; c < histogram[j]*100/max_value; c++)
             *out << "|";
         *out << endl;
     }
