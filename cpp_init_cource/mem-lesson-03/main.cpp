@@ -23,7 +23,6 @@ using namespace std;
 #define operating_system_sd 0
 #endif
 
-
 int main() {
 
     cout << "Last building date and time: "<< __DATE__ << " " << __TIME__ << endl;
@@ -42,7 +41,6 @@ int main() {
         default:
             cout << "Operation system doesn't recognise" << endl;
     }
-
 
     return EXIT_SUCCESS;
 }
