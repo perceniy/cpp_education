@@ -4,37 +4,32 @@
 
 
 #include <iostream>
-
+#include <stdlib.h>
 using namespace std;
 
 #ifdef __APPLE__
-#define STOP_CHECKS
-#define a 1
-#endif __APPLE__
+#define operating_system_sd 1
+#endif
 
-
-#ifndef STOP_CHECKS
 #ifdef _WIN32
-#define STOP_CHECKS
-#define a 1
-#endif  __linux__
-#endif STOP_CHECKS
+#define operating_system_sd 2
+#endif
 
-#ifndef STOP_CHECKS
-#ifdef _linux_
-#define STOP_CHECKS
-#define a 1
-#endif  __linux__
-#endif STOP_CHECKS
+#ifdef __linux__
+#define operating_system_sd 3
+#endif
 
+#ifndef operating_system_sd
+#define operating_system_sd 0
+#endif
 
 
 int main() {
 
-    cout << __DATE__ << " " << __TIME__ << endl;
-    cout << __cplusplus << endl;
+    cout << "Last building date and time: "<< __DATE__ << " " << __TIME__ << endl;
+    cout << "C++ version: "<< __cplusplus << endl;
 
-    switch (a) {
+    switch (operating_system_sd) {
         case 1:
             cout << "Building environment is Apple" << endl;
             break;
@@ -42,10 +37,10 @@ int main() {
             cout << "Building environment is Windows" << endl;
             break;
         case 3:
-            cout << "Building environment is Windows" << endl;
+            cout << "Building environment is Linux" << endl;
             break;
         default:
-            cout << "Operation system wasn't recognise" << endl;
+            cout << "Operation system doesn't recognise" << endl;
     }
 
 
