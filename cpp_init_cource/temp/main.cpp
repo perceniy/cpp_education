@@ -2,36 +2,42 @@
 
 using namespace std;
 
-class Parent {
-public:
-    virtual void fv() {
-        cout << "virtual f parent" << endl;
-    }
-    void f () {
-        cout << "f parent" << endl;
-    }
-};
 
-class Child: public Parent {
-public:
-    virtual void fv() {
-        cout << "virtual f child" << endl;
+void swap (int *l, int *r) {
+    int buf = *r;
+    *r = *l;
+    *l = buf;
+}
+
+void quicksort(int* l, int * r) {
+    if (r - l <= 1) return;
+    int* ll = l;
+    int* rr = r - 1;
+    int z = *(l + (r-l)/2);
+    while (ll<=rr) {
+        while (*ll < z) ll++;
+        while (*rr > z) rr--;
+        if (ll <= rr) {
+            swap(ll, rr);
+            ll++;
+            rr--;
+        }
     }
-    void f () {
-        cout << "f child" << endl;
-    }
-};
+    if (l < rr) quicksort(l, rr + 1);
+    if (ll < r) quicksort(ll, r);
+}
 
 int main() {
 
-    Child* c1 = new Child();
-    Parent* p1 = c1;
+    int a[8] = {5,4,6,3,8,3,9,1};
 
-    c1->f();
-    c1->fv();
 
-    p1->f();
-    p1->fv();
+    quicksort(a, a + 8);
+
+    for (int i = 0; i<8; i++) {
+        cout << a[i] << endl;
+    }
+
 
     return EXIT_SUCCESS;
 }
